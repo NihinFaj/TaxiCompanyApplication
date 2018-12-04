@@ -16,7 +16,7 @@ public class Vehicle {
     /**
      * Constructor for objects of class Vehicle
      * @param id This taxi or shuttle's unique Id
-     * @param base The default location of this taxi or shuttle
+     *
      */
     public Vehicle(String id)
     {
@@ -30,5 +30,70 @@ public class Vehicle {
     protected String getIdentity()
     {
         return identity;
+    }
+    /**
+     * Return the destination of the vehicle.
+     * @return The destination of the vehicle.
+     */
+    public String getDestination()
+    {
+        return destination;
+    }
+
+    /**
+     * Set the intented destination of the vehicle.
+     * @param destination The intended destination.
+     */
+    protected void setDestination(String destination)
+    {
+        this.destination = destination;
+    }
+
+    /**
+     * Return the location of the vehicle
+     * @return The location of the vehicle
+     */
+    public String getLocation()
+    {
+        return location;
+    }
+
+    /**
+     * set the location of the user.
+     * @param the location of the vehicle.
+     */
+    protected void setLocation(String location){
+        if(location != null){
+            this.location = location;
+        }
+    }
+
+    /**
+     * Return a string representative of the vehicle status.
+     * @return returns the vehicle status when free or in use
+     */
+    public String toString()
+    {
+        if(destination != null && !destination.isEmpty()){
+            return identity + " at " + location + " headed for " +
+                    destination;
+        }else{
+            return identity + " at " + location + " and Vehicle is Free";
+        }
+    }
+
+    /**
+     * returns the current status of the vehicle
+     * @return the vehicle status
+     */
+    public String getStatus(){
+        return toString();
+    }
+
+    /**
+     * method that indicates that a vehicle has arrived at is destination
+     */
+    protected void signalArrival(){
+        location = destination;
     }
 }

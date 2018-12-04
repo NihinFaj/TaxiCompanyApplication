@@ -29,4 +29,34 @@ public class Shuttle extends Vehicle {
             setNextDestination();
         }
 
+        /**
+         * Set the next destination of the shuttle.
+         */
+        private void setNextDestination()
+        {
+            destinationNumber++;
+            if(destinationNumber >= route.size()) {
+                // End of the circular route.
+                // Start from the beginning again.
+                destinationNumber = 0;
+            }
+            setDestination(route.get(destinationNumber));
+        }
+
+        /**
+         * Set the route for this shuttle.
+         * @param route The circular list of destinations.
+         */
+        private void setRoute(ArrayList<String> route)
+        {
+            if(route.size() < 2) {
+                throw new IllegalStateException("setRoute must have at least two destinations");
+            }
+            // Make a copy of the list parameter.
+            this.route = new ArrayList<String>();
+            this.route.addAll(route);
+            destinationNumber = 0;
+            setLocation(route.get(destinationNumber));
+            setNextDestination();
+        }
 }
